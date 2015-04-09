@@ -17,10 +17,13 @@ Tool to transform input sources to RDF
 ```shell
   mkdir LindaTools
 ```
-* Create a Python Virtual Environment with Python 3 and activate it:
+* Create a Python Virtual Environment with Python 3:
 ```shell
   virtualenv LindaTools --python=python3
   cd LindaTools
+```
+* Activate it (Needs to be done every time you work with it):
+```shell
   source bin/activate
 ```
 * Clone the repository:
