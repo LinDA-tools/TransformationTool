@@ -84,3 +84,46 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },  
+    },
+    'handlers': {
+        'default': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'logs/trafo.log',
+            'maxBytes': 5*1024*1025, # 5MB
+            'backupCount': 5,
+            'formatter': 'simple',
+        },
+
+        'request_handler': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'logs/trafo.log',
+            'maxBytes': 5*1024*1025, # 5MB
+            'backupCount': 5,
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['default'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },        
+        'django.request': {
+            'handlers': ['request_handler'],
+            'level': 'DEBUG',
+        }
+    }
+}
